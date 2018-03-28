@@ -17,12 +17,14 @@ public class SecurityBrowserConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-            .loginPage("/login.html")
+            //.loginPage("/login.html")
             .and()
             .authorizeRequests()
             .antMatchers("/login.html")
             .permitAll()
             .anyRequest()
-            .authenticated();
+            .authenticated()
+            .and()
+            .csrf().disable();
     }
 }
