@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -40,6 +39,6 @@ public class BrowserUserDetailsService implements UserDetailsService {
         user.setUsername(username);
         user.setPassword(password);
 
-        return new org.springframework.security.core.userdetails.User(username,password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return user;
     }
 }
