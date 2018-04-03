@@ -1,4 +1,4 @@
-package com.daishuai.security.browser.web.service;
+package com.daishuai.security.browser.service;
 
 import com.daishuai.security.browser.vo.User;
 import org.apache.log4j.Logger;
