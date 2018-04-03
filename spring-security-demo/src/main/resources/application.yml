@@ -12,8 +12,13 @@ spring:
 security:
   basic:
     enabled: true
+daishuai:
+  security:
+    browser:
+      loginPage: /login.html
 #    driver-class-name: oracle.jdbc.OracleDriver
 #    url: jdbc:oracle:thin:@localhost:1521:frogtech
 #    username: scott
 #    password: tiger
+
 
