@@ -40,7 +40,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
-
+    <!--生成可执行的jar包-->
 	<build>
 		<plugins>
 			<plugin>
