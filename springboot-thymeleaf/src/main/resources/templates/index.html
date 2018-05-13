@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>首页</title>
+</head>
+<body>
+    <h1 th:text="#{index.title}"></h1>
+    <a href="#" th:href="@{/index.html(locale='zh_CN')}">中文</a>|<a href="#" th:href="@{/index.html(locale='en_US')}">English</a>
+</body>
+</html>
