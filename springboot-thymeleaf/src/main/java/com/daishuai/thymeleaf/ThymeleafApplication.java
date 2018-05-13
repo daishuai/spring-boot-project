@@ -1,12 +1,12 @@
-package com.daishuai.springbootthymeleaf;
+package com.daishuai.thymeleaf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootThymeleafApplication {
+public class ThymeleafApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootThymeleafApplication.class, args);
+		SpringApplication.run(ThymeleafApplication.class, args);
 	}
 }
