@@ -1,4 +1,4 @@
-package com.daishuai.thymeleaf;
+package com.daishuai.thymeleaf.config;
 
 import org.springframework.web.servlet.LocaleResolver;
 

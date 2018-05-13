@@ -1,6 +1,5 @@
 package com.daishuai.thymeleaf.config;
 
-import com.daishuai.thymeleaf.MyLocaleResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
