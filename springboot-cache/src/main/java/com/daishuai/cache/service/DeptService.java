@@ -19,7 +19,7 @@ public class DeptService {
     @Autowired
     private DeptRepository deptRepository;
 
-    @Cacheable
+    @Cacheable(value = "dept",key = "#id")
     public Department getDeptById(Integer id){
         return deptRepository.findOne(id);
     }
