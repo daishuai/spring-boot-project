@@ -5,7 +5,22 @@
     <title>首页</title>
 </head>
 <body>
+    <div th:insert="~{commons/commons::topbar}"></div>
     <h1 th:text="#{index.title}"></h1>
     <a href="#" th:href="@{/index.html(locale='zh_CN')}">中文</a>|<a href="#" th:href="@{/index.html(locale='en_US')}">English</a>
+    <table>
+        <tr th:each="person:${persons}">
+            <td th:text="${person.firstName}"></td>
+            <td th:text="${person.country}"></td>
+            <td th:text="${person.age}"></td>
+            <td th:text="${person.gender == 0 ? '男' : '女'}"></td>
+            <td th:text="${#dates.format(person.birthday,'yyyy-MM-dd HH:mm:ss.SSS')}"></td>
+        </tr>
+    </table>
+    <div th:replace="~{commons/commons::#footer}"></div>
+    <div th:insert="commons/commons::#footer"></div>
+    <div>[[~{commons/commons::#footer}]]</div>
+    <div>[(~{commons/commons::#footer})]</div>
+
 </body>
 </html>
