@@ -13,14 +13,14 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * Copyright: Copyright (c) 2018
  */
 @SpringBootApplication
-public class DemoApplication extends SpringBootServletInitializer{
+public class JspApplication extends SpringBootServletInitializer{
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(JspApplication.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(DemoApplication.class);
+        return builder.sources(JspApplication.class);
     }
 }

@@ -22,7 +22,8 @@ public class SecurityBrowserConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-            //.loginPage(securityProperties.getBrowser().getLoginPage())
+            .loginPage(securityProperties.getBrowser().getLoginPage())
+            //.loginPage("/index.html")
             .loginProcessingUrl("/authenticate/required")
             .and()
             .authorizeRequests()

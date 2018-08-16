@@ -3,3 +3,5 @@ spring:
     basename: i18n.index
   thymeleaf:
     cache: false
+server:
+  port: 9999

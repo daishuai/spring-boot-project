@@ -3,9 +3,7 @@ package com.daishuai.cache.controller;
 import com.daishuai.cache.entity.Department;
 import com.daishuai.cache.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description: java类作用描述
@@ -20,8 +18,19 @@ public class DeptController {
     @Autowired
     private DeptService deptService;
 
-    @RequestMapping("/dept/{id}")
+    @GetMapping("/dept/{id}")
     public Department getDept(@PathVariable("id") Integer id){
         return deptService.getDeptById(id);
     }
+
+    @PostMapping("/dept1")
+    public Department saveDept(Department department){
+        return deptService.saveDept(department);
+    }
+
+    @PostMapping("/dept2")
+    public Department update(Department department){
+        return deptService.updateDept(department);
+    }
+
 }

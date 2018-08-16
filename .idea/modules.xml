@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-security/demo.iml" filepath="$PROJECT_DIR$/spring-security/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security/spring-security.iml" filepath="$PROJECT_DIR$/spring-security/spring-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security-app/spring-security-app.iml" filepath="$PROJECT_DIR$/spring-security-app/spring-security-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security-browser/spring-security-browser.iml" filepath="$PROJECT_DIR$/spring-security-browser/spring-security-browser.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security-core/spring-security-core.iml" filepath="$PROJECT_DIR$/spring-security-core/spring-security-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security-demo/spring-security-demo.iml" filepath="$PROJECT_DIR$/spring-security-demo/spring-security-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-amqp/springboot-amqp.iml" filepath="$PROJECT_DIR$/springboot-amqp/springboot-amqp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-cache/springboot-cache.iml" filepath="$PROJECT_DIR$/springboot-cache/springboot-cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-elasticsearch/springboot-elasticsearch.iml" filepath="$PROJECT_DIR$/springboot-elasticsearch/springboot-elasticsearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-jms/springboot-jms.iml" filepath="$PROJECT_DIR$/springboot-jms/springboot-jms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-jpa/springboot-jpa.iml" filepath="$PROJECT_DIR$/springboot-jpa/springboot-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-jsp/springboot-jsp.iml" filepath="$PROJECT_DIR$/springboot-jsp/springboot-jsp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-task/springboot-task.iml" filepath="$PROJECT_DIR$/springboot-task/springboot-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-thymeleaf/springboot-thymeleaf.iml" filepath="$PROJECT_DIR$/springboot-thymeleaf/springboot-thymeleaf.iml" />
     </modules>
   </component>
 </project>

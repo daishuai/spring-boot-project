@@ -9,7 +9,7 @@ package com.daishuai.security.core.properties;
  */
 public class BrowserProperties {
 
-    private String loginPage = "index.html";
+    private String loginPage = "/index.html";
 
     public String getLoginPage() {
         return loginPage;
