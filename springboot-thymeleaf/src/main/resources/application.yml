@@ -3,5 +3,7 @@ spring:
     basename: i18n.index
   thymeleaf:
     cache: false
+    #mode: LEGACYHTML5  #默认值：HTML5。LEGACYHTML5：使用遗留的HTML5以去掉对HTML的校验
+    mode: HTML  #Thymeleaf 3.x支持
 server:
   port: 9999

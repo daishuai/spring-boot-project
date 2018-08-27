@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title>首页</title>
 </head>
 <body>
@@ -19,8 +19,12 @@
     </table>
     <div th:replace="~{commons/commons::#footer}"></div>
     <div th:insert="commons/commons::#footer"></div>
+    <!--[[...]]等价于th:text结果会被HTML转义-->
     <div>[[~{commons/commons::#footer}]]</div>
+    <!--[()}等价于th:utext结果不会被HTML转义-->
     <div>[(~{commons/commons::#footer})]</div>
+    <span th:utext="'<h1>Hello</h1>'">th:utext</span>
+    <span th:text="'<h1>Hello</h1>'">th:text</span>
 
 </body>
 </html>
