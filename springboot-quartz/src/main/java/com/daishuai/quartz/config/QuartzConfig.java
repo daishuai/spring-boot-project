@@ -1,6 +1,5 @@
 package com.daishuai.quartz.config;
 
-import com.daishuai.quartz.scheduler.QuartzManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -19,14 +18,12 @@ public class QuartzConfig {
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean() {
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
+        //是否自动启动
+        schedulerFactory.setAutoStartup(false);
+        //设置延时启动
         return schedulerFactory;
     }
 
-    @Bean(initMethod = "init")
-    public QuartzManager quartzManager() {
-        QuartzManager quartzManager = new QuartzManager();
-        quartzManager.setSchedulerFactoryBean(schedulerFactoryBean());
-        return quartzManager;
-    }
+
 
 }

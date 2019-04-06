@@ -1,17 +1,26 @@
 package com.daishuai.quartz.scheduler;
 
+import com.daishuai.quartz.entity.JobConfigEntity;
+import com.daishuai.quartz.repository.JobConfigRepository;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.quartz.*;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobKey.jobKey;
 import static org.quartz.TriggerBuilder.newTrigger;
-import static org.quartz.TriggerKey.*;
-import static org.quartz.JobKey.*;
+import static org.quartz.TriggerKey.triggerKey;
 /**TriggerKey
  * @Description: java类作用描述
  * @Author: daishuai
@@ -21,22 +30,14 @@ import static org.quartz.JobKey.*;
  */
 @Setter
 @Slf4j
-public class QuartzManager {
+@Component
+public class QuartzManager implements InitializingBean, DisposableBean {
 
-    private SchedulerFactoryBean schedulerFactoryBean;
-
+    @Autowired
     private Scheduler scheduler;
 
-    public void init() throws Exception {
-        if (schedulerFactoryBean != null) {
-            scheduler = schedulerFactoryBean.getScheduler();
-            //启动定时任务
-            scheduler.start();
-            return;
-        }
-        log.info("schedulerFactoryBean is null");
-        throw new Exception("schedulerFactoryBean is null");
-    }
+    @Autowired
+    private JobConfigRepository jobConfigRepository;
 
     /**
      * 新增定时任务
@@ -48,11 +49,11 @@ public class QuartzManager {
      * @param clazz
      * @param taskData
      */
-    public void addJob(String jobName, String jobGroup, String triggerName, String triggerGroup, String cron, Class<? extends Job> clazz, Map<String, Object> taskData) {
+    public void addJob(String jobName, String jobGroup, String triggerName, String triggerGroup, String cron, Class<? extends Job> clazz, Map<String, Object> taskData, Date startAt) {
         JobDataMap jobDataMap = new JobDataMap(taskData);
         JobDetail jobDetail = newJob(clazz).withIdentity(jobName, jobGroup).usingJobData(jobDataMap).build();
         CronScheduleBuilder schedule = cronSchedule(cron);
-        Trigger trigger = newTrigger().withIdentity(triggerName, triggerGroup).startNow().withSchedule(schedule).build();
+        Trigger trigger = newTrigger().withIdentity(triggerName, triggerGroup).startAt(startAt).withSchedule(schedule).build();
         try {
             if (scheduler.checkExists(jobKey(jobName, jobGroup))) {
                 log.info("job already exist, job's name : {}, job's group : {}", jobName, jobGroup);
@@ -74,8 +75,28 @@ public class QuartzManager {
      * @param cron
      * @param clazz
      */
-    public void addJob(String jobName, String jobGroup, String triggerName, String triggerGroup, String cron, Class<? extends Job> clazz) {
-        this.addJob(jobName, jobGroup, triggerName, triggerGroup, cron, clazz, null);
+    public void addJob(String jobName, String jobGroup, String triggerName, String triggerGroup, String cron, Class<? extends Job> clazz, Date startAt) {
+        this.addJob(jobName, jobGroup, triggerName, triggerGroup, cron, clazz, new HashMap<String, Object>(), startAt);
+    }
+
+    /**
+     * 新增定时任务
+     * @param jobName
+     * @param jobGroup
+     * @param triggerName
+     * @param triggerGroup
+     * @param cron
+     * @param jobPath
+     */
+    public void addJob(String jobName, String jobGroup, String triggerName, String triggerGroup, String cron, String jobPath, Date startAt) {
+        try {
+            Class<?> clazz = Class.forName(jobPath);
+            if (Job.class.isAssignableFrom(clazz)) {
+                this.addJob(jobName, jobGroup, triggerName, triggerGroup, cron, (Class<? extends Job>) clazz, startAt);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -86,16 +107,19 @@ public class QuartzManager {
      * @param triggerGroup
      * @param newCron
      */
-    public void updateJob(String jobName, String jobGroup, String triggerName, String triggerGroup, String newCron) {
+    public void updateJob(String jobName, String jobGroup, String triggerName, String triggerGroup, String newCron, Date startAt) {
         //方法二
         JobKey jobKey = jobKey(jobName, jobGroup);
         try {
+            if (!scheduler.checkExists(jobKey)) {
+                return;
+            }
             JobDetail jobDetail = scheduler.getJobDetail(jobKey);
             Class<? extends Job> clazz = jobDetail.getJobClass();
             //先删除旧的job
             removeJob(jobName, jobGroup, triggerName, triggerGroup);
             //再新增job
-            addJob(jobName, jobGroup, triggerName, triggerGroup, newCron,clazz);
+            addJob(jobName, jobGroup, triggerName, triggerGroup, newCron,clazz, startAt);
         } catch (SchedulerException e) {
             log.info("update job occurred exception: {}", e.getMessage());
             e.printStackTrace();
@@ -112,6 +136,9 @@ public class QuartzManager {
         //方法一
         TriggerKey triggerKey = triggerKey(triggerName, triggerGroup);
         try {
+            if (!scheduler.checkExists(triggerKey)) {
+                return;
+            }
             CronTrigger oldTrigger = (CronTrigger) scheduler.getTrigger(triggerKey);
             String oldCron = oldTrigger.getCronExpression();
             if (!oldCron.equalsIgnoreCase(newCron)) {
@@ -137,6 +164,9 @@ public class QuartzManager {
         TriggerKey triggerKey = triggerKey(triggerName, triggerGroup);
         JobKey jobKey = jobKey(jobName, jobGroup);
         try {
+            if (!scheduler.checkExists(jobKey)) {
+                return;
+            }
             //停止触发器
             scheduler.pauseTrigger(triggerKey);
             //移除触发器
@@ -152,7 +182,7 @@ public class QuartzManager {
     /**
      * 关闭所有定时任务
      */
-    public void shutdown() {
+    private void shutdown() {
         try {
             if (!scheduler.isShutdown()) {
                 scheduler.shutdown();
@@ -160,6 +190,27 @@ public class QuartzManager {
         } catch (SchedulerException e) {
             log.info("shutdown jobs occurred exception: {}", e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        shutdown();
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        List<JobConfigEntity> jobConfigs = jobConfigRepository.findJobConfigEntitiesByFlag(1);
+        if (CollectionUtils.isNotEmpty(jobConfigs)) {
+            for (JobConfigEntity jobConfig : jobConfigs) {
+                this.addJob(jobConfig.getJobName(),
+                        jobConfig.getJobGroup(),
+                        jobConfig.getTriggerName(),
+                        jobConfig.getTriggerGroup(),
+                        jobConfig.getCron(),
+                        jobConfig.getJobPath(),
+                        jobConfig.getStartAt());
+            }
         }
     }
 }

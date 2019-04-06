@@ -1,0 +1,12 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: springboot-quartz
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot?useSSL=false
+    username: root
+    password: root
+  jpa:
+    show-sql: true

@@ -19,7 +19,6 @@ public class MyJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         JobKey jobKey = jobExecutionContext.getJobDetail().getKey();
-        log.info("job name is:{}, job group is:{}", jobKey.getName(), jobKey.getGroup());
         log.info("执行调度任务，MyJob.......");
     }
 }
