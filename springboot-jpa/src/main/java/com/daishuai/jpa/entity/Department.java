@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * @Description: java类作用描述
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "departments")
 @Data
-public class Department {
+public class Department implements Serializable {
 
     @Id
     private Integer departmentId;

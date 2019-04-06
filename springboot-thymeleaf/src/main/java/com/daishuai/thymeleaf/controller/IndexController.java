@@ -1,9 +1,11 @@
 package com.daishuai.thymeleaf.controller;
 
 import com.daishuai.thymeleaf.entity.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +21,7 @@ import java.util.List;
 @Controller
 public class IndexController {
 
+
     @GetMapping("/index")
     public String index(Model model) {
         List<Person> persons = new ArrayList<Person>();
@@ -30,4 +33,5 @@ public class IndexController {
         model.addAttribute("persons",persons);
         return "index";
     }
+
 }

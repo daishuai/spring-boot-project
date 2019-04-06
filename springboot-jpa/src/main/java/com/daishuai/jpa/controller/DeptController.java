@@ -2,7 +2,10 @@ package com.daishuai.jpa.controller;
 
 import com.daishuai.jpa.entity.Department;
 import com.daishuai.jpa.repository.DeptRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,9 +21,13 @@ import java.util.*;
 @RestController
 public class DeptController {
 
+    private static final Logger logger = LoggerFactory.getLogger(DeptController.class);
+
     @Autowired
     private DeptRepository repository;
 
+    @Autowired
+    private PlatformTransactionManager transactionManager;
 
     @RequestMapping("/saves")
     public List<Department> addList(){
@@ -33,7 +40,8 @@ public class DeptController {
             department.setManagerId(2340 + i);
             departments.add(department);
         }
-        List<Department> save = repository.save(departments);
-        return save;
+        logger.info("事务管理器1111111111111：{}", transactionManager.getClass().getName());
+        //List<Department> save = repository.save(departments);
+        return departments;
     }
 }

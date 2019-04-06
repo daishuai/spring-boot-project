@@ -1,0 +1,8 @@
+hello:
+  name: zhansan
+  enable: true
+debug: true
+spring:
+  redis:
+    host: 172.20.10.8
+    port: 6379

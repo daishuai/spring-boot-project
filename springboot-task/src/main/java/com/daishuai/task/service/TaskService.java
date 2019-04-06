@@ -42,10 +42,10 @@ public class TaskService {
      *  L 最后
      *  W 工作日
      *  C 和Calender联系后计算过的值
-     *  # 星期，4#2 第2个星期四
+     *  # 星期，4#2 第2个星期四,MON,TUE,WEB,THU,FRI,SAT,SUN:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
      */
     //@Scheduled(cron = "0/5 * * * * MON-FRI") 每周一到周五，每5秒执行一次
-    @Scheduled(cron = "0 8 15 29 6 5")
+    @Scheduled(cron = "0-10,20,30/3 * 14 17 3 0")
     public void scheduledTask(){
         logger.info("定时任务：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss").format(new Date()));
     }

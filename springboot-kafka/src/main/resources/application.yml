@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: springboot-kafka
+  kafka:
+    bootstrap-servers: 192.168.108.100:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: test
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+debug: true

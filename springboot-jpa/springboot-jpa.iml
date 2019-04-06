@@ -76,6 +76,13 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:4.3.18.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.3.18.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.18.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jta-atomikos:1.5.15.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.atomikos:transactions-jms:3.9.3" level="project" />
+    <orderEntry type="library" name="Maven: com.atomikos:transactions-jta:3.9.3" level="project" />
+    <orderEntry type="library" name="Maven: com.atomikos:transactions:3.9.3" level="project" />
+    <orderEntry type="library" name="Maven: com.atomikos:transactions-api:3.9.3" level="project" />
+    <orderEntry type="library" name="Maven: com.atomikos:atomikos-util:3.9.3" level="project" />
+    <orderEntry type="library" name="Maven: com.atomikos:transactions-jdbc:3.9.3" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.46" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.22" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:1.5.15.RELEASE" level="project" />

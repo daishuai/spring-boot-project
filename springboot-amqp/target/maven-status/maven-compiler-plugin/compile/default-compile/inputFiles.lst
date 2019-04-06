@@ -1,0 +1,5 @@
+D:\IdeaProjects\spring-boot-project\springboot-amqp\src\main\java\com\daishuai\amqp\entity\Department.java
+D:\IdeaProjects\spring-boot-project\springboot-amqp\src\main\java\com\daishuai\amqp\AmqpApplication.java
+D:\IdeaProjects\spring-boot-project\springboot-amqp\src\main\java\com\daishuai\amqp\config\RabbitConfig.java
+D:\IdeaProjects\spring-boot-project\springboot-amqp\src\main\java\com\daishuai\amqp\service\DeptService.java
+D:\IdeaProjects\spring-boot-project\springboot-amqp\src\main\java\com\daishuai\amqp\sender\ResultSender.java

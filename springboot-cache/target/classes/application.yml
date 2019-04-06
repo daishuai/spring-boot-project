@@ -1,0 +1,18 @@
+server:
+  port: 7011
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.190:3306/springboot?useSSL=false
+    username: root
+    password: root
+  redis:
+    host: 192.168.1.190
+    port: 6379
+    password: redis
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+debug: true

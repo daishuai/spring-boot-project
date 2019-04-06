@@ -1,0 +1,5 @@
+com\daishuai\amqp\service\DeptService.class
+com\daishuai\amqp\sender\ResultSender.class
+com\daishuai\amqp\config\RabbitConfig.class
+com\daishuai\amqp\entity\Department.class
+com\daishuai\amqp\AmqpApplication.class

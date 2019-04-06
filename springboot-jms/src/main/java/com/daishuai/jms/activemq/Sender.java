@@ -1,6 +1,7 @@
 package com.daishuai.jms.activemq;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +15,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class Sender {
     @Autowired
-    private JmsTemplate jmsTemplate;
+    @Qualifier(value = "jmsQueueTemplate")
+    private JmsTemplate jmsQueueTemplate;
 
-    public void sendMessage(String destination, String message){
-        jmsTemplate.send(destination, new MyMessage(message));
+    @Autowired
+    @Qualifier(value = "jmsTopicTemplate")
+    private JmsTemplate jmsTopicTemplate;
+
+    public void sendQueueMessage(String destination, String message){
+        jmsQueueTemplate.send(destination, new MyMessage(message));
+        jmsTopicTemplate.sendAndReceive(destination, new MyMessage(message));
+    }
+
+    public void sendTopicMessage(String destination, String message) {
+        jmsTopicTemplate.send(destination, new MyMessage(message));
     }
 }
