@@ -1,0 +1,4 @@
+#AutoConfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.daishuai.redis.config.DistributedLockAutoConfiguration,\
+com.daishuai.redis.config.DistributedLockAspectConfiguration
