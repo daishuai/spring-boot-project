@@ -1,4 +1,4 @@
-package com.daishuai.quartz.comtroller;
+package com.daishuai.quartz.controller;
 
 import com.daishuai.quartz.scheduler.QuartzManager;
 import lombok.extern.slf4j.Slf4j;
