@@ -1,0 +1,23 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: springboot-multi-datasource
+  datasource:
+    mysql:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/springboot?useSSL=false&characterEncoding=utf8
+      username: root
+      password: root
+    oracle:
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521:FROGTECH
+      username: hr
+      password: hr
+  jpa:
+    hibernate:
+      mysql-dialect: org.hibernate.dialect.MySQL5Dialect
+      oracle-dialect: org.hibernate.dialect.Oracle12cDialect
+    show-sql: true
+    open-in-view: true
