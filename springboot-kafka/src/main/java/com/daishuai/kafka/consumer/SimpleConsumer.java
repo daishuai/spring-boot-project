@@ -4,6 +4,7 @@ import com.daishuai.kafka.common.MessageEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,9 +18,10 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class SimpleConsumer {
 
-    @KafkaListener(topics = "mytopic")
+    @KafkaListener(groupId = "consumerGroup", topicPartitions = {@TopicPartition(topic = "mytopic", partitions = {"0","1"})})
     public MessageEntity receive(ConsumerRecord<String, MessageEntity> record) {
-        log.info("监听到一条消息：{}", record.value().getId());
+        log.info("SimpleConsumer监听到一条消息,topic:{},key:{},offset:{},partition:{},id:{}", record.topic(), record.key(), record.offset(), record.partition(), record.value().getId());
         return record.value();
     }
+
 }
