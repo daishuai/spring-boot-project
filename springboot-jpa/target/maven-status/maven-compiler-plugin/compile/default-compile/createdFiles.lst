@@ -1,0 +1,4 @@
+com\daishuai\jpa\controller\DeptController.class
+com\daishuai\jpa\repository\DeptRepository.class
+com\daishuai\jpa\aspect\MethodAspect.class
+com\daishuai\jpa\entity\Department.class

@@ -1,5 +1,6 @@
 package com.daishuai.quartz.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -36,5 +37,6 @@ public class JobConfigEntity {
 
     private Integer flag;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date startAt;
 }

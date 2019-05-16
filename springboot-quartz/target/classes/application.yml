@@ -10,3 +10,5 @@ spring:
     password: root
   jpa:
     show-sql: true
+  redis:
+    host: 192.168.108.100

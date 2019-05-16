@@ -6,7 +6,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
@@ -126,7 +125,7 @@ public class RedisDistributedLock extends AbstractDistributedLock {
      * ----将锁资源放入Redis，setIfAbsent(key, value)
      * ----设置过期时间，expire(key, expire, timeUnit)
      * ----释放锁，delete(key)
-     * 1、在调用selfIfAbsent()方法后线程挂掉了，即没有给锁定的资源设置过期时间，默认是永不过期，那么这个锁就会一直存在，所以需要保证设置锁及其过期时间两个操作的原子性
+     * 1、在调用setIfAbsent()方法后线程挂掉了，即没有给锁定的资源设置过期时间，默认是永不过期，那么这个锁就会一直存在，所以需要保证设置锁及其过期时间两个操作的原子性
      *   解决方法：jedis当中有这种源自操作的方法，通过RedisTemplate的execute方法获取到jedis里操作命令的对象，JedisCommands.set(key,value,"NX","PX",expire)
      *   NX:表示只用当前锁定资源不存在的时候才能SET成功。
      *   PX:expire表示锁定的资源的自动过期时间，单位是毫秒。
