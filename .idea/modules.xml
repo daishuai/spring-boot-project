@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spring-security/demo.iml" filepath="$PROJECT_DIR$/spring-security/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security/spring-security.iml" filepath="$PROJECT_DIR$/spring-security/spring-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security-app/spring-security-app.iml" filepath="$PROJECT_DIR$/spring-security-app/spring-security-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security-browser/spring-security-browser.iml" filepath="$PROJECT_DIR$/spring-security-browser/spring-security-browser.iml" />

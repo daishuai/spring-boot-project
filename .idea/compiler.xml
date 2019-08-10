@@ -2,23 +2,24 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Maven default annotation processors profile">
+      <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springboot-cache" />
+        <module name="springboot-jpa" />
+        <module name="springboot-jms" />
+        <module name="springboot-jsp" />
+        <module name="spring-security-demo" />
         <module name="demo" />
-        <module name="spring-security-app" />
+        <module name="spring-security" />
+        <module name="springboot-thymeleaf" />
         <module name="spring-security-browser" />
         <module name="spring-security-core" />
-        <module name="spring-security-demo" />
-        <module name="springboot-amqp" />
-        <module name="springboot-cache" />
         <module name="springboot-elasticsearch" />
-        <module name="springboot-jms" />
-        <module name="springboot-jpa" />
-        <module name="springboot-jsp" />
+        <module name="spring-security-app" />
+        <module name="springboot-amqp" />
         <module name="springboot-task" />
-        <module name="springboot-thymeleaf" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -38,5 +39,11 @@
       <module name="springboot-task" target="1.8" />
       <module name="springboot-thymeleaf" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring-security" options="-parameters" />
+      <module name="springboot-jms" options="-parameters" />
+    </option>
   </component>
 </project>
