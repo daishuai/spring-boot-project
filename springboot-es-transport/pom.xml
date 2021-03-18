@@ -15,7 +15,7 @@
     </parent>
     
     <properties>
-        <elasticsearch.version>5.6.16</elasticsearch.version>
+        <elasticsearch.version>7.11.2</elasticsearch.version>
         <fastjson.version>1.2.31</fastjson.version>
         <commons.lang3.version>3.4</commons.lang3.version>
         <maven.compiler.source>1.8</maven.compiler.source>
